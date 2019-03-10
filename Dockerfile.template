@@ -66,5 +66,49 @@ COPY ./app ./
 ## uncomment if you want systemd
 ENV INITSYSTEM on
 
+RUN apt-get 
+
+RUN apt-get update && apt-get install -yq --no-install-recommends \
+  cron \
+  && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+COPY . /usr/src/app/
+WORKDIR /usr/src/app
+
+
+DISPLAY=:0.0
+
+RUN echo "# ┌───────────── minute (0 - 59)"  | crontab
+RUN echo "# │ ┌───────────── hour (0 - 23)" | crontab
+RUN echo "# │ │ ┌───────────── day of month (1 - 31)" | crontab
+RUN echo "# │ │ │ ┌───────────── month (1 - 12)" | crontab
+RUN echo "# │ │ │ │ ┌───────────── day of week (0 - 6) (Sunday to Saturday;" | crontab
+RUN echo "# │ │ │ │ │                                       7 is also Sunday on some systems)" | crontab
+RUN echo "# │ │ │ │ │" | crontab
+RUN echo "# │ │ │ │ │" | crontab
+RUN echo "# * * * * *  command to execute" | crontab
+
+RUN echo "# Reboot the Pi every night at 3 AM to ensure smooth operation" | crontab
+RUN echo "0 3 * * * sudo reboot" | crontab
+
+RUN echo "# Example: Turn display on weekdays at 7 AM" | crontab
+RUN echo "# 0 7 * * 1-5 ~/display-on.sh" | crontab
+
+RUN echo "# Example: Turn display off weekdays at 7 PM (and after the nightly reboot)" | crontab
+RUN echo "# 0 19 * * 1-5 ~/display-off.sh" | crontab
+RUN echo "# 10 3 * * 1-5 ~/display-off.sh" | crontab
+
+RUN echo "# Example: Reload webpage every hour" | crontab
+RUN echo "# 0 * * * * xdotool key ctrl+R" | crontab
+
+RUN echo "# Example: Cycle between open tabs every 5 minutes" | crontab
+RUN echo "# */5 * * * * xdotool key ctrl+Tab" | crontab
+
+
+
+
+CMD ["/bin/bash", "start.sh"]
+
+
 # Start app
 CMD ["bash", "/usr/src/app/start.sh"]
