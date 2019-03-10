@@ -48,7 +48,9 @@ unclutter -idle 5 -root &
 
 # adding script to start chromium
 echo "#!/bin/bash" > /home/chromium/xstart.sh
-echo "chromium-browser --start-fullscreen --window-size=1920,1080 --disable-infobars --kiosk $URL_LAUNCHER_URL --disable-gpu --disable-software-rasterizer --disable-dev-shm-usage" >> /home/chromium/xstart.sh
+echo "chromium-browser --start-fullscreen --window-size=1920,1080  $URL_LAUNCHER_URL " >> /home/chromium/xstart.sh
+#echo "chromium-browser --start-fullscreen --window-size=1920,1080 --disable-infobars --kiosk $URL_LAUNCHER_URL --disable-gpu --disable-software-rasterizer --disable-dev-shm-usage" >> /home/chromium/xstart.sh
+
 chmod 770 /home/chromium/xstart.sh
 chown chromium:chromium /home/chromium/xstart.sh
 

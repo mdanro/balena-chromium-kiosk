@@ -27,6 +27,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   cron \
   unclutter \
   xdotool \
+  htop \
   matchbox-window-manager \
   nitrogen \
   libexpat-dev && rm -rf /var/lib/apt/lists/*
