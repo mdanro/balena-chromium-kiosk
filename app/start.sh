@@ -52,6 +52,15 @@ echo "chromium-browser --start-fullscreen --window-size=1920,1080 --disable-info
 chmod 770 /home/chromium/xstart.sh
 chown chromium:chromium /home/chromium/xstart.sh
 
+# Hide Chromium while it's starting/loading the page
+wid=`xdotool search --sync --onlyvisible --class chromium`
+xdotool windowunmap $wid
+sleep 15 # give the web page time to load
+xdotool windowmap $wid
+
+# Finally, switch process to our window manager
+exec matchbox-window-manager -use_titlebar no
+
 # starting chromium as chrome user
 su -c 'startx /home/chromium/xstart.sh' chromium
 
