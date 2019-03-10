@@ -76,7 +76,7 @@ COPY . /usr/src/app/
 WORKDIR /usr/src/app
 
 
-DISPLAY=:0.0
+RUN echo "DISPLAY=:0.0"
 
 RUN echo "# ┌───────────── minute (0 - 59)"  | crontab
 RUN echo "# │ ┌───────────── hour (0 - 23)" | crontab
