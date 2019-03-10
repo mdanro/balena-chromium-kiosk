@@ -24,6 +24,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   lsb-release \
   fbset \
   systemd-sysv \
+  cron \
   libexpat-dev && rm -rf /var/lib/apt/lists/*
 
 RUN echo "#!/bin/bash" > /etc/X11/xinit/xserverrc \
@@ -65,12 +66,6 @@ COPY ./app ./
 
 ## uncomment if you want systemd
 ENV INITSYSTEM on
-
-RUN apt-get 
-
-RUN apt-get update && apt-get install -yq --no-install-recommends \
-  cron \
-  && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 COPY . /usr/src/app/
 WORKDIR /usr/src/app
