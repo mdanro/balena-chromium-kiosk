@@ -25,6 +25,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   fbset \
   systemd-sysv \
   cron \
+  unclutter \
   xdotool \
   matchbox-window-manager \
   nitrogen \

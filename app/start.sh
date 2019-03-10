@@ -36,15 +36,15 @@ sudo nitrogen --set-centered background.png
 unclutter -idle 5 -root &
 
 # Make sure Chromium profile is marked clean, even if it crashed
-if [ -f .config/chromium/Default/Preferences ]; then
-    cat .config/chromium/Default/Preferences \
-        | jq '.profile.exit_type = "SessionEnded" | .profile.exited_cleanly = true' \
-        > .config/chromium/Default/Preferences-clean
-    mv .config/chromium/Default/Preferences{-clean,}
-fi
+###if [ -f .config/chromium/Default/Preferences ]; then
+###    cat .config/chromium/Default/Preferences \
+###        | jq '.profile.exit_type = "SessionEnded" | .profile.exited_cleanly = true' \
+###        > .config/chromium/Default/Preferences-clean
+###    mv .config/chromium/Default/Preferences{-clean,}
+###fi
 
 # Remove notes of previous sessions, if any
-find .config/chromium/ -name "Last *" | xargs rm
+###find .config/chromium/ -name "Last *" | xargs rm
 
 # adding script to start chromium
 echo "#!/bin/bash" > /home/chromium/xstart.sh
