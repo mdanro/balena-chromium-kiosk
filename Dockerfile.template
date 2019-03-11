@@ -28,6 +28,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   unclutter \
   xdotool \
   htop \
+  ttf-freefont \
   matchbox-window-manager \
   nitrogen \
   libexpat-dev && rm -rf /var/lib/apt/lists/*
