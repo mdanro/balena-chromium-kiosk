@@ -44,7 +44,7 @@ if [ -f /home/chromium/.config/chromium/Default/Preferences ]; then
 fi
 
 # Remove notes of previous sessions, if any
-###find .config/chromium/ -name "Last *" | xargs rm
+find .config/chromium/ -name "Last *" | xargs rm
 
 # adding script to start chromium
 echo "#!/bin/bash" > /home/chromium/xstart.sh
@@ -55,13 +55,13 @@ chmod 770 /home/chromium/xstart.sh
 chown chromium:chromium /home/chromium/xstart.sh
 
 ## Hide Chromium while it's starting/loading the page
-#wid=`xdotool search --sync --onlyvisible --class chromium`
-#xdotool windowunmap $wid
-#sleep 15 # give the web page time to load
-#xdotool windowmap $wid
-#
+wid=`xdotool search --sync --onlyvisible --class chromium`
+xdotool windowunmap $wid
+sleep 15 # give the web page time to load
+xdotool windowmap $wid
+
 ## Finally, switch process to our window manager
-#exec matchbox-window-manager -use_titlebar no
+exec matchbox-window-manager -use_titlebar no
 
 # starting chromium as chrome user
 su -c 'startx /home/chromium/xstart.sh' chromium
