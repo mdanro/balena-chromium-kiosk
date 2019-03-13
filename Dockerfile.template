@@ -83,7 +83,7 @@ WORKDIR /usr/src/app
 
 #RUN echo "DISPLAY=:0.0"
 
-RUN echo /usr/src/app/crontab.example | crontab
+#RUN echo /usr/src/app/crontab.example | crontab
 
 # Start app
 CMD ["bash", "/usr/src/app/start.sh"]
