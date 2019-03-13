@@ -18,7 +18,23 @@ sed -i -e 's/console/anybody/g' /etc/X11/Xwrapper.config
 useradd chromium -m -s /bin/bash -G root
 usermod -a -G root,tty chromium
 
-export DISPLAY=:0.0
+# Remove notes of previous sessions, if any
+find /home/chromium/.config/chromium/ -name "Last *" | xargs rm
+
+# adding script to start chromium
+echo "#!/bin/bash" > /home/chromium/xstart.sh
+echo "chromium-browser --start-fullscreen --window-size=1920,1080  --disable-infobars --kiosk $URL_LAUNCHER_URL --disable-gpu --disable-software-rasterizer --disable-dev-shm-usage " >> /home/chromium/xstart.sh
+#echo "chromium-browser --start-fullscreen --window-size=1920,1080 --disable-infobars --kiosk $URL_LAUNCHER_URL --disable-gpu --disable-software-rasterizer --disable-dev-shm-usage" >> /home/chromium/xstart.sh
+
+chmod 770 /home/chromium/xstart.sh
+chown chromium:chromium /home/chromium/xstart.sh
+
+###check the active displays replace usr with the dedicated user
+###ps e -u $usr | grep -Po " DISPLAY=[\.0-9A-Za-z:]* " | sort -u
+
+
+export DISPLAY=:0
+export XAUTHORITY=/home/chromium/.Xauthority
 
 # Start cursor at the top-left corner, as opposed to the default of dead-center
 # (so it doesn't accidentally trigger hover styles on elements on the page)
@@ -43,26 +59,17 @@ if [ -f /home/chromium/.config/chromium/Default/Preferences ]; then
     mv /home/chromium/.config/chromium/Default/Preferences{-clean,}
 fi
 
-# Remove notes of previous sessions, if any
-find /home/chromium/.config/chromium/ -name "Last *" | xargs rm
-
-# adding script to start chromium
-echo "#!/bin/bash" > /home/chromium/xstart.sh
-echo "chromium-browser --start-fullscreen --window-size=1920,1080  --disable-infobars --kiosk $URL_LAUNCHER_URL --disable-gpu --disable-software-rasterizer --disable-dev-shm-usage " >> /home/chromium/xstart.sh
-#echo "chromium-browser --start-fullscreen --window-size=1920,1080 --disable-infobars --kiosk $URL_LAUNCHER_URL --disable-gpu --disable-software-rasterizer --disable-dev-shm-usage" >> /home/chromium/xstart.sh
-
-chmod 770 /home/chromium/xstart.sh
-chown chromium:chromium /home/chromium/xstart.sh
-
-## Hide Chromium while it's starting/loading the page
-#wid=`xdotool search --sync --onlyvisible --class chromium`
-#xdotool windowunmap $wid
-#sleep 15 # give the web page time to load
-#xdotool windowmap $wid
-#
 ## Finally, switch process to our window manager
 #exec matchbox-window-manager -use_titlebar no
 
 # starting chromium as chrome user
 su -c 'startx /home/chromium/xstart.sh' chromium
 
+## Hide Chromium while it's starting/loading the page
+wid=`xdotool search --sync --onlyvisible --class chromium`
+xdotool windowunmap $wid
+sleep 15 # give the web page time to load
+xdotool windowmap $wid
+
+##Activate the cronjob
+crontab < /usr/src/app/cycle-tabs.sh
