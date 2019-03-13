@@ -23,7 +23,7 @@ find /home/chromium/.config/chromium/ -name "Last *" | xargs rm
 
 # adding script to start chromium
 echo "#!/bin/bash" > /home/chromium/xstart.sh
-echo "chromium-browser --start-fullscreen --window-size=1920,1080  --disable-infobars --kiosk $URL_LAUNCHER_URL --disable-gpu --disable-software-rasterizer --disable-dev-shm-usage " >> /home/chromium/xstart.sh
+echo "chromium-browser --start-fullscreen --window-size=1920,1080  --disable-infobars $URL_LAUNCHER_URL --disable-gpu --disable-software-rasterizer --disable-dev-shm-usage " >> /home/chromium/xstart.sh
 #echo "chromium-browser --start-fullscreen --window-size=1920,1080 --disable-infobars --kiosk $URL_LAUNCHER_URL --disable-gpu --disable-software-rasterizer --disable-dev-shm-usage" >> /home/chromium/xstart.sh
 
 chmod 770 /home/chromium/xstart.sh
