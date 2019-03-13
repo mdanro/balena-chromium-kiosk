@@ -29,7 +29,7 @@ run crontab -l to see what is going to be run
 
 
 ## Environment Variables
-Create an enviroment variable in your Balena app named URL_LAUNCHER_URL and assign it your web accessible URL. The Chromium start page loads by default. Adding multiple space sepparated sites will open several tabs. The application allready cycles between tabs at 1 minute interval (Check cronexaple.tab)
+Create an enviroment variable in your Balena app named URL_LAUNCHER_URL and assign it your web accessible URL. The Chromium start page loads by default. Adding multiple space sepparated sites will open several tabs. The application allready cycles between tabs at 1 minute interval (Check crontab.example)
 
 
 
