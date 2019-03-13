@@ -7,7 +7,7 @@ umount /dev/shm && mount -t tmpfs shm /dev/shm
 rm /tmp/.X0-lock &>/dev/null || true
 
 # set hostname based on balena uuid
-HNAME="${BALENA_DEVICE_UUID:0:7}"
+HNAME="rpi-${BALENA_DEVICE_UUID:0:7}"
 echo $HNAME > /etc/hostname
 hostname $HNAME
 
