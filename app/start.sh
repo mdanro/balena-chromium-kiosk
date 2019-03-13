@@ -63,6 +63,12 @@ fi
 #exec matchbox-window-manager -use_titlebar no
 
 ##Activate the cronjob
+chmod 770 /usr/src/app/crontab.example
+chmod 770 /usr/src/app/cycle-tabs.sh
+chmod 770 /usr/src/app/refresh-tab1h.sh
+chmod 770 /usr/src/app/display-on.sh
+chmod 770 /usr/src/app/display-off.sh
+
 crontab < /usr/src/app/crontab.example
 # starting chromium as chrome user
 su -c 'startx /home/chromium/xstart.sh' chromium
