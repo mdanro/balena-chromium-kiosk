@@ -1,5 +1,5 @@
 [Unit]
-Description=Balena User Application
+Description=DT Kiosk
 
 [Service]
 EnvironmentFile=/etc/docker.env

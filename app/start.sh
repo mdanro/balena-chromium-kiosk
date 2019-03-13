@@ -7,7 +7,7 @@ umount /dev/shm && mount -t tmpfs shm /dev/shm
 rm /tmp/.X0-lock &>/dev/null || true
 
 # set hostname based on balena uuid
-HNAME="bk-rpi-${BALENA_DEVICE_UUID:0:7}"
+HNAME="${BALENA_DEVICE_UUID:0:7}"
 echo $HNAME > /etc/hostname
 hostname $HNAME
 
@@ -24,13 +24,9 @@ find /home/chromium/.config/chromium/ -name "Last *" | xargs rm
 # adding script to start chromium
 echo "#!/bin/bash" > /home/chromium/xstart.sh
 echo "chromium-browser --start-fullscreen --window-size=1920,1080  --no-first-run --disable-infobars --kiosk $URL_LAUNCHER_URL --disable-gpu --disable-software-rasterizer --disable-dev-shm-usage " >> /home/chromium/xstart.sh
-#echo "chromium-browser --start-fullscreen --window-size=1920,1080 --disable-infobars --kiosk $URL_LAUNCHER_URL --disable-gpu --disable-software-rasterizer --disable-dev-shm-usage" >> /home/chromium/xstart.sh
 
 chmod 770 /home/chromium/xstart.sh
 chown chromium:chromium /home/chromium/xstart.sh
-
-###check the active displays replace usr with the dedicated user
-###ps e -u $usr | grep -Po " DISPLAY=[\.0-9A-Za-z:]* " | sort -u
 
 #get the display context and xauthority
 export DISPLAY=:0
@@ -45,12 +41,6 @@ xset s off # don't activate screensaver
 xset -dpms # disable DPMS (Energy Star) features.
 xset s noblank # don't blank the video device
 
-# Set X screen background
-##sudo nitrogen --set-centered background.png
-
-# Hide cursor afer 5 seconds of inactivity
-#unclutter -idle 5 -root &
-
 # Make sure Chromium profile is marked clean, even if it crashed
 if [ -f /home/chromium/.config/chromium/Default/Preferences ]; then
     cat /home/chromium/.config/chromium/Default/Preferences \
@@ -58,9 +48,6 @@ if [ -f /home/chromium/.config/chromium/Default/Preferences ]; then
         > /home/chromium/.config/chromium/Default/Preferences-clean
     mv /home/chromium/.config/chromium/Default/Preferences{-clean,}
 fi
-
-## Finally, switch process to our window manager
-#exec matchbox-window-manager -use_titlebar no
 
 ##Activate the cronjob
 chmod 770 /usr/src/app/crontab.example
