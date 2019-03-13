@@ -81,9 +81,9 @@ COPY . /usr/src/app/
 WORKDIR /usr/src/app
 
 
-RUN echo "DISPLAY=:0.0"
+#RUN echo "DISPLAY=:0.0"
 
-RUN echo "*/1 * * * * xdotool key ctrl+Tab" | crontab
+#RUN echo "*/1 * * * * xdotool key ctrl+Tab" | crontab
 
 # Start app
 CMD ["bash", "/usr/src/app/start.sh"]
