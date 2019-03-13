@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo tvservice -o > /dev/null
+vcgencmd display_power 0

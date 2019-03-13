@@ -32,7 +32,7 @@ chown chromium:chromium /home/chromium/xstart.sh
 ###check the active displays replace usr with the dedicated user
 ###ps e -u $usr | grep -Po " DISPLAY=[\.0-9A-Za-z:]* " | sort -u
 
-
+#get the display context and xauthority
 export DISPLAY=:0
 export XAUTHORITY=/home/chromium/.Xauthority
 
