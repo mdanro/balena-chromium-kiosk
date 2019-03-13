@@ -24,8 +24,8 @@
 # Example: Cycle between open tabs every 5 minutes
 */1 * * * * bash /usr/src/app/cycle-tabs.sh
 */2 * * * * bash /usr/src/app/refresh-tab1h.sh
-*/3 * * * * /usr/src/app/display-off.sh
-*/4 * * * * /usr/src/app/display-on.sh
+#*/3 * * * * /usr/src/app/display-off.sh
+#*/4 * * * * /usr/src/app/display-on.sh
 
 
 
