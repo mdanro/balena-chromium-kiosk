@@ -24,4 +24,4 @@ DISPLAY=:0.0
 # 0 * * * * xdotool key ctrl+R
 
 # Example: Cycle between open tabs every 5 minutes
-# */5 * * * * xdotool key ctrl+Tab
+*/1 * * * * cycle-tabs.sh

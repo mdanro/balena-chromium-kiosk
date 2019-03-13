@@ -49,7 +49,7 @@ xset s noblank # don't blank the video device
 ##sudo nitrogen --set-centered background.png
 
 # Hide cursor afer 5 seconds of inactivity
-unclutter -idle 5 -root &
+#unclutter -idle 5 -root &
 
 # Make sure Chromium profile is marked clean, even if it crashed
 if [ -f /home/chromium/.config/chromium/Default/Preferences ]; then
@@ -72,4 +72,5 @@ sleep 15 # give the web page time to load
 xdotool windowmap $wid
 
 ##Activate the cronjob
-crontab < /usr/src/app/cycle-tabs.sh
+crontab < /usr/src/app/crontab.example
+
