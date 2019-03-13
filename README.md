@@ -2,7 +2,7 @@
 This is a simple kiosk for loading a web site in Chromium running on a Raspberry PI using BalenaOS/Balena Cloud. 
 ## Original Source
 The project was originally a fork from the [resin-electronjs](https://github.com/balena-io/resin-electronjs) template.
-forked from jayatvars/balena-chromium-kiosk
+forked from https://github.com/jayatvars/balena-chromium-kiosk
 
 Inspired from https://github.com/futurice/chilipie-kiosk
 But several work-arounds adopted to be able to run inside the container
