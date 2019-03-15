@@ -18,9 +18,6 @@ sed -i -e 's/console/anybody/g' /etc/X11/Xwrapper.config
 useradd chromium -m -s /bin/bash -G root
 usermod -a -G root,tty chromium
 
-# Remove notes of previous sessions, if any
-find /home/chromium/.config/chromium/ -name "Last *" | xargs rm
-
 # adding script to start chromium
 echo "#!/bin/bash" > /home/chromium/xstart.sh
 echo "chromium-browser --start-fullscreen --window-size=1920,1080  --no-first-run --disable-infobars --kiosk $URL_LAUNCHER_URL --disable-gpu --disable-software-rasterizer --disable-dev-shm-usage " >> /home/chromium/xstart.sh
@@ -41,6 +38,9 @@ xset s off # don't activate screensaver
 xset -dpms # disable DPMS (Energy Star) features.
 xset s noblank # don't blank the video device
 
+
+# Remove notes of previous sessions, if any
+find /home/chromium/.config/chromium/ -name "Last *" | xargs rm
 # Make sure Chromium profile is marked clean, even if it crashed
 if [ -f /home/chromium/.config/chromium/Default/Preferences ]; then
     cat /home/chromium/.config/chromium/Default/Preferences \
@@ -54,6 +54,16 @@ chmod 770 /usr/src/app/crontab.example
 
 crontab < /usr/src/app/crontab.example
 # starting chromium as chrome user
+
+
+# Default to UTC if no TIMEZONE env variable is set
+echo "Setting time zone to ${TIMEZONE=UTC}"
+# This only works on Debian-based images
+echo "${TIMEZONE}" > /etc/timezone
+dpkg-reconfigure tzdata
+
+
+
 su -c 'startx /home/chromium/xstart.sh' chromium
 
 ## Hide Chromium while it's starting/loading the page
@@ -62,5 +72,9 @@ su -c 'startx /home/chromium/xstart.sh' chromium
 #sleep 15 # give the web page time to load
 #xdotool windowmap $wid
 
+##List available modes
+#/opt/vc/bin/tvservice -m CEA
+#/opt/vc/bin/tvservice -m DMT
+#tvservice -e "CEA 32"
 
 
