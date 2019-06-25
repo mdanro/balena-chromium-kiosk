@@ -25,6 +25,7 @@ echo "chromium-browser --start-fullscreen --window-size=1920,1080  --no-first-ru
 chmod 770 /home/chromium/xstart.sh
 chown chromium:chromium /home/chromium/xstart.sh
 
+
 #get the display context and xauthority
 export DISPLAY=:0
 export XAUTHORITY=/home/chromium/.Xauthority
@@ -54,6 +55,7 @@ chmod 770 /usr/src/app/crontab.example
 
 crontab < /usr/src/app/crontab.example
 # starting chromium as chrome user
+
 
 
 # Default to UTC if no TIMEZONE env variable is set
