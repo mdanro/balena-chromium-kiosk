@@ -55,7 +55,7 @@ chmod 770 /usr/src/app/crontab.example
 
 crontab < /usr/src/app/crontab.example
 # starting chromium as chrome user
-
+su -c 'startx /home/chromium/xstart.sh' chromium
 
 
 # Default to UTC if no TIMEZONE env variable is set
@@ -66,8 +66,6 @@ dpkg-reconfigure tzdata
 
 
 
-su -c 'startx /home/chromium/xstart.sh' chromium
-
 ## Hide Chromium while it's starting/loading the page
 #wid=`xdotool search --sync --onlyvisible --class chromium`
 #xdotool windowunmap $wid
@@ -77,6 +75,6 @@ su -c 'startx /home/chromium/xstart.sh' chromium
 ##List available modes
 #/opt/vc/bin/tvservice -m CEA
 #/opt/vc/bin/tvservice -m DMT
-#tvservice -e "CEA 32"
+tvservice -e "CEA 32"
 
 
