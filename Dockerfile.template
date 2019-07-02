@@ -78,5 +78,7 @@ COPY . /usr/src/app/
 WORKDIR /usr/src/app
 
 
+sudo apt-get update
+
 # Start app
 CMD ["bash", "/usr/src/app/start.sh"]
