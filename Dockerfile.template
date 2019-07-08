@@ -37,8 +37,6 @@ RUN echo "#!/bin/bash" > /etc/X11/xinit/xserverrc \
   && echo 'exec /usr/bin/X -s 0 dpms -nocursor -nolisten tcp "$@"' >> /etc/X11/xinit/xserverrc
 
 
-RUN apt-get update
-
 ###&& echo 'exec /usr/bin/X -s 0 dpms -nocursor -nolisten tcp "$@"' >> /etc/X11/xinit/xserverrc
 #### advised by balena to add the below for fixing local input issues
 
@@ -79,7 +77,7 @@ ENV INITSYSTEM on
 COPY . /usr/src/app/
 WORKDIR /usr/src/app
 
-
+RUN apt-get update
 
 
 # Start app
