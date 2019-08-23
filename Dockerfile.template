@@ -29,8 +29,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
   unclutter \
   xdotool \
   ttf-freefont \
-  libexpat-dev \
-  && apt-get clean && rm -rf /var/lib/apt/lists/*
+  libexpat-dev 
+  
+RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 #RUN apt-get update
 
